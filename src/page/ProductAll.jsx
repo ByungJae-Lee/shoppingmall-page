@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../component/ProductCard';
+import { Col, Container, Row } from 'react-bootstrap';
 
 const ProductAll = () => {
   // 받은 API를 UI에 보여주는 state
@@ -20,6 +21,15 @@ const ProductAll = () => {
 
   return (
     <div>
+      <Container>
+        <Row>
+          {productList.map((item) => (
+            <Col lg={3}>
+              <ProductCard item={item} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
       <ProductCard />
     </div>
   );

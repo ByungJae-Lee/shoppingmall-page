@@ -2,8 +2,15 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const goToLoginPage = () => {
+    navigate('/login');
+  };
+
   const menuList = [
     '여성',
     'Divided',
@@ -19,7 +26,7 @@ const Navbar = () => {
       <div>
         <div className="login-button">
           <FontAwesomeIcon icon={faUser} />
-          <div>로그인</div>
+          <div onClick={goToLoginPage}>로그인</div>
         </div>
       </div>
 
@@ -31,7 +38,6 @@ const Navbar = () => {
       </div>
 
       <div className="menu-area">
-
         <div className="empty-space"></div>
 
         <ul className="menu-list">
@@ -42,7 +48,7 @@ const Navbar = () => {
 
         <div className="serch-area">
           <FontAwesomeIcon icon={faMagnifyingGlass} />
-          <input type="text" placeholder='검색'/>
+          <input type="text" placeholder="검색" />
         </div>
       </div>
     </div>

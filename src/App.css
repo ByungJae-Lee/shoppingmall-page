@@ -3,6 +3,7 @@
   display: flex;
   justify-content: flex-end;
   margin: 20px;
+  cursor: pointer;
 }
 
 .nav-section {
@@ -55,6 +56,16 @@
   border: none;
   outline: none;
   border-bottom: 1px solid #000;
-  border-color: black; 
+  border-color: black;
   animation: underline-draw 0.2s ease-out;
+}
+
+.product-card img {
+  width: 100%;
+  /* 호버되는중의 효과 확대되어지는 속도 등 */
+  transition: all 0.1s ease;
+}
+/* 호버되면? -> 1.1배확대 */
+.product-card img:hover{
+  transform: scale(1.1);
 }
