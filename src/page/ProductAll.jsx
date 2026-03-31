@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import ProductCard from '../component/ProductCard';
 
 const ProductAll = () => {
+  // 받은 API를 UI에 보여주는 state
+  const [productList, setProductList] = useState([]);
+
+  // db.json API 호출 함수
+  const getProducts = async () => {
+    let url = `http://localhost:4000/products`;
+    let response = await fetch(url);
+    let data = await response.json();
+    console.log('data', data);
+    setProductList(data);
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
     <div>
-      전체상품 페이지
+      <ProductCard />
     </div>
-  )
-}
+  );
+};
 
-export default ProductAll
+export default ProductAll;

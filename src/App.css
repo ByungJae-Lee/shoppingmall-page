@@ -33,14 +33,28 @@
 .serch-area {
   display: flex;
   align-items: center;
-  background-color: #f2f2f2; /* 연한 회색 배경 */
-  border-radius: 20px; /* 둥근 테두리 */
-  padding: 5px 15px;
 }
 
 .serch-area input {
-  background: transparent; /* 배경색 투명하게 */
+  /* border: none; */
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  /* transition: all 0.1s ease;  */
+  width: 150px;
+}
+
+@keyframes underline-draw {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+.serch-area input:focus {
   border: none;
   outline: none;
-  margin-left: 8px;
+  border-bottom: 1px solid #000;
+  border-color: black; 
+  animation: underline-draw 0.2s ease-out;
 }
