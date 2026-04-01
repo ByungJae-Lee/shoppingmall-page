@@ -51,14 +51,12 @@
   display: flex;
   justify-content: flex-end;
   /* 오른쪽 끝에서 20px~30px 정도 떼어줍니다 */
-  padding-right: 15px; 
+  padding-right: 15px;
   /* 또는 margin-right: 30px; 를 사용해도 좋습니다. */
 }
 
 .search-icon {
   padding: 10px;
-  
-
 }
 
 .serch-area input {
@@ -73,7 +71,6 @@
   background-position: bottom left;
   transition: background-size 0.3s ease; /* 0.3초 동안 부드럽게 */
 }
- 
 
 @keyframes underline-draw {
   from {
@@ -97,4 +94,13 @@
 /* 호버되면? -> 1.1배확대 */
 .product-card img:hover {
   transform: scale(1.05);
+}
+
+.product-img {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.product-tags * {
+  padding-bottom: 20px;
 }

@@ -5,6 +5,8 @@ import ProductAll from './page/ProductAll';
 import Login from './page/Login';
 import ProductDetail from './page/ProductDetail';
 import Navbar from './component/Navbar';
+import { useEffect, useState } from 'react';
+import PrivateRoute from './route/PrivateRoute';
 
 /*
 1. 전체상품, 로그인, 상품상세 페이지
@@ -20,15 +22,23 @@ import Navbar from './component/Navbar';
 */
 
 function App() {
+  // 로그인 했는지 안했는지 true -> login O, false -> login X
+  const [authenticate, setAuthenticate] = useState(false);
+  useEffect(() => {
+    console.log('authen', authenticate);
+  }, [authenticate]);
   return (
     <div>
       <Navbar />
       <Routes>
         <Route path="/" element={<ProductAll />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+        <Route
+          path="/login"
+          element={<Login setAuthenticate={setAuthenticate} />}
+        ></Route>
         <Route
           path="/product/:id"
-          element={<ProductDetail />}
+          element={<PrivateRoute authenticate={authenticate} />}
         ></Route>
       </Routes>
     </div>
