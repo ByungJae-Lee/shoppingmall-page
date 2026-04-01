@@ -21,7 +21,7 @@ const ProductAll = () => {
 
   return (
     <div>
-      <Container>
+      <Container className='product-container'>
         <Row>
           {productList.map((item) => (
             <Col lg={3}>

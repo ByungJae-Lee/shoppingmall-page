@@ -1,7 +1,17 @@
-.login-button {
-  /* flex 컨테이너로 만든다:  */
+/* ==========================================================================
+   1. 공통 및 초기화 스타일
+   ========================================================================== */
+.login-nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between; /* 햄버거는 왼쪽, 로그인은 오른쪽 */
+  align-items: center;
+  padding: 10px 15px;
+}
+.product-container {
+  padding-top: 20px;
+}
+.login-button {
+  display: flex;
   margin: 20px;
   cursor: pointer;
 }
@@ -11,22 +21,22 @@
   justify-content: center;
 }
 
-.nav-section img{
+.nav-section img {
   cursor: pointer;
 }
 
+/* ==========================================================================
+   2. PC 전용 메뉴 영역 (menu-area)
+   ========================================================================== */
 .menu-area {
   display: flex;
-  /* 세로 중앙정렬 */
   align-items: center;
-  /* padding: 0 20px; */
   padding-top: 20px;
 }
 
 .empty-space,
 .serch-area,
 .menu-list {
-  /* 세 영역 모두 동일한 확장 비율 부여 */
   flex: 1;
   display: flex;
 }
@@ -37,7 +47,6 @@
 
 .menu-list {
   justify-content: center;
-  /* 점 사라지게 하는 것 */
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -45,18 +54,12 @@
 
 .menu-list li {
   padding: 10px;
+  cursor: pointer;
 }
 
 .serch-area {
-  /* justify-content: flex-end;
-  margin-right: 20px; */
-
-  flex: 1;
-  display: flex;
   justify-content: flex-end;
-  /* 오른쪽 끝에서 20px~30px 정도 떼어줍니다 */
   padding-right: 15px;
-  /* 또는 margin-right: 30px; 를 사용해도 좋습니다. */
 }
 
 .search-icon {
@@ -67,35 +70,81 @@
   border: 1px solid #ccc;
   padding: 5px 5px;
   width: 200px;
-
-  /* 애니메이션을 위한 배경 설정: 왼쪽에서 오른쪽으로 차오를 검은 선 */
   background-image: linear-gradient(black, black);
-  background-size: 0% 2px; /* 처음에는 선의 너비가 0% */
+  background-size: 0% 2px;
   background-repeat: no-repeat;
   background-position: bottom left;
-  transition: background-size 0.3s ease; /* 0.3초 동안 부드럽게 */
+  transition: background-size 0.3s ease;
 }
 
-@keyframes underline-draw {
-  from {
-    width: 0;
-  }
-  to {
-    width: 200px;
-  }
-}
 .serch-area input:focus {
   border: none;
   outline: none;
   background-size: 100% 2px;
 }
 
+/* ==========================================================================
+   3. 모바일 전용 사이드바 영역 (추가 및 분리)
+   ========================================================================== */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -260px; /* 사이드바 너비만큼 왼쪽 바깥으로 숨김 */
+  width: 260px;
+  height: 100vh;
+  background-color: white;
+  z-index: 1000; /* 최상단에 위치 */
+  transition: left 0.3s ease;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 햄버거 클릭 시 클래스가 붙어 화면 안으로 들어옴 */
+.side-menu.active {
+  left: 0;
+}
+
+.close-button {
+  align-self: flex-end; /* 오른쪽 정렬 */
+  font-size: 28px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.side-menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu-list li {
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* 사이드바가 열렸을 때 뒷배경을 어둡게 해주는 레이어 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* ==========================================================================
+   4. 상품 카드 영역
+   ========================================================================== */
 .product-card img {
   width: 100%;
-  /* 호버되는중의 효과 확대되어지는 속도 등 */
   transition: all 0.1s ease;
 }
-/* 호버되면? -> 1.1배확대 */
+
 .product-card img:hover {
   transform: scale(1.05);
 }
@@ -107,4 +156,42 @@
 
 .product-tags * {
   padding-bottom: 20px;
+}
+
+/* ==========================================================================
+   5. 반응형 미디어 쿼리 (화면 폭 1024px 이하)
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+  /* PC 전용 메뉴 숨김 */
+  .menu-area {
+    /* display: none; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .empty-space {
+    display: none;
+  }
+  .menu-list {
+    display: none;
+  }
+  .serch-area {
+    justify-content: center;
+    /* align-items: center; */
+  }
+
+  /* 모바일용 햄버거 버튼 노출 */
+  .hamburger-menu {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
+
+/* 화면 폭 1025px 이상일 때 (PC) */
+@media screen and (min-width: 1025px) {
+  .hamburger-menu {
+    /* display: none; 햄버거 버튼 숨김 */
+    visibility: hidden;
+  }
 }

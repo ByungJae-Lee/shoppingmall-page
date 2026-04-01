@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBars,
+  faXmark,
+  faMagnifyingGlass,
+} from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router';
-
-/*
-1. 중앙부분이 같이 움직임 각자 별도로 관리하고싶다
-
-*/
 
 const Navbar = () => {
   const navigate = useNavigate();
+
+  // 🔴 추가: 메뉴의 열림/닫힘 상태를 관리하는 변수
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const goToLoginPage = () => {
     navigate('/login');
@@ -32,7 +34,15 @@ const Navbar = () => {
   ];
   return (
     <div>
-      <div>
+      <div className="login-nav">
+        {/* 🔴 추가: 모바일에서만 보일 햄버거 버튼 */}
+        <div
+          className="hamburger-menu"
+          onClick={() => setIsMenuOpen(true)}
+        >
+          <FontAwesomeIcon icon={faBars} />
+        </div>
+
         <div className="login-button">
           <FontAwesomeIcon icon={faUser} />
           <div onClick={goToLoginPage}>로그인</div>
@@ -46,8 +56,12 @@ const Navbar = () => {
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1280px-H%26M-Logo.svg.png"
         />
       </div>
+      {/* 사이드바 */}
 
-      <div className="menu-area">
+      {/* 🔴 변경: 상태(isMenuOpen)에 따라 'active' 클래스가 붙음 */}
+      <div className={'menu-area'}>
+        {/* 🔴 추가: 사이드바 내부의 닫기(X) 버튼 */}
+
         <div className="empty-space"></div>
 
         <ul className="menu-list">
@@ -63,6 +77,20 @@ const Navbar = () => {
           />
           <input type="text" placeholder="검색" />
         </div>
+      </div>
+      {/* 4. 모바일 전용 사이드바 (추가된 부분) */}
+      <div className={`side-menu ${isMenuOpen ? 'active' : ''}`}>
+        <div
+          className="close-button"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <FontAwesomeIcon icon={faXmark} />
+        </div>
+        <ul className="side-menu-list">
+          {menuList.map((menu, index) => (
+            <li key={index}>{menu}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
