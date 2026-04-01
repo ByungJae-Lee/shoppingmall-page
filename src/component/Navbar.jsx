@@ -7,6 +7,7 @@ import {
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router';
+import { NavbarOffcanvas } from 'react-bootstrap';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -32,6 +33,17 @@ const Navbar = () => {
     'Sale',
     '지속가능성',
   ];
+// 검색기능 함수
+  const search = (event) => {
+    // 엔터키 인식
+    if (event.key === 'Enter') {
+      // input 내 값을 읽어와서
+      let keyword = event.target.value;
+      // url을 바꿔줌
+      navigate(`/?q=${keyword}`);
+    }
+  };
+
   return (
     <div>
       <div className="login-nav">
@@ -56,7 +68,6 @@ const Navbar = () => {
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1280px-H%26M-Logo.svg.png"
         />
       </div>
-      {/* 사이드바 */}
 
       {/* 🔴 변경: 상태(isMenuOpen)에 따라 'active' 클래스가 붙음 */}
       <div className={'menu-area'}>
@@ -69,13 +80,18 @@ const Navbar = () => {
             <li>{menu}</li>
           ))}
         </ul>
-
+        {/* 검색창 */}
         <div className="serch-area">
           <FontAwesomeIcon
             className="search-icon"
             icon={faMagnifyingGlass}
           />
-          <input type="text" placeholder="검색" />
+          {/* 엔터키 인식 */}
+          <input
+            type="text"
+            onKeyPress={(event) => search(event)}
+            placeholder="검색"
+          />
         </div>
       </div>
       {/* 4. 모바일 전용 사이드바 (추가된 부분) */}
