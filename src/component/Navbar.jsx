@@ -7,14 +7,17 @@ import { useNavigate } from 'react-router';
 /*
 1. 중앙부분이 같이 움직임 각자 별도로 관리하고싶다
 
-*/ 
+*/
 
 const Navbar = () => {
   const navigate = useNavigate();
 
-
   const goToLoginPage = () => {
     navigate('/login');
+  };
+
+  const goToHomepage = () => {
+    navigate('/');
   };
 
   const menuList = [
@@ -38,6 +41,7 @@ const Navbar = () => {
 
       <div className="nav-section">
         <img
+          onClick={goToHomepage}
           width={100}
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1280px-H%26M-Logo.svg.png"
         />
@@ -53,7 +57,10 @@ const Navbar = () => {
         </ul>
 
         <div className="serch-area">
-          <FontAwesomeIcon className='search-icon' icon={faMagnifyingGlass} />
+          <FontAwesomeIcon
+            className="search-icon"
+            icon={faMagnifyingGlass}
+          />
           <input type="text" placeholder="검색" />
         </div>
       </div>

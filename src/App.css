@@ -11,6 +11,10 @@
   justify-content: center;
 }
 
+.nav-section img{
+  cursor: pointer;
+}
+
 .menu-area {
   display: flex;
   /* 세로 중앙정렬 */
