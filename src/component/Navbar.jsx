@@ -4,8 +4,14 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router';
 
+/*
+1. 중앙부분이 같이 움직임 각자 별도로 관리하고싶다
+
+*/ 
+
 const Navbar = () => {
   const navigate = useNavigate();
+
 
   const goToLoginPage = () => {
     navigate('/login');
@@ -47,7 +53,7 @@ const Navbar = () => {
         </ul>
 
         <div className="serch-area">
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <FontAwesomeIcon className='search-icon' icon={faMagnifyingGlass} />
           <input type="text" placeholder="검색" />
         </div>
       </div>
@@ -56,3 +62,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

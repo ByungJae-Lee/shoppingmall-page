@@ -13,18 +13,30 @@
 
 .menu-area {
   display: flex;
-  justify-content: flex-start;
-  justify-content: space-between;
+  /* 세로 중앙정렬 */
+  align-items: center;
+  /* padding: 0 20px; */
+  padding-top: 20px;
+}
+
+.empty-space,
+.serch-area,
+.menu-list {
+  /* 세 영역 모두 동일한 확장 비율 부여 */
+  flex: 1;
+  display: flex;
 }
 
 .empty-space {
+  justify-content: flex-start;
 }
 
 .menu-list {
-  display: flex;
   justify-content: center;
   /* 점 사라지게 하는 것 */
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .menu-list li {
@@ -32,32 +44,49 @@
 }
 
 .serch-area {
+  /* justify-content: flex-end;
+  margin-right: 20px; */
+
+  flex: 1;
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
+  /* 오른쪽 끝에서 20px~30px 정도 떼어줍니다 */
+  padding-right: 15px; 
+  /* 또는 margin-right: 30px; 를 사용해도 좋습니다. */
+}
+
+.search-icon {
+  padding: 10px;
+  
+
 }
 
 .serch-area input {
-  /* border: none; */
   border: 1px solid #ccc;
-  padding: 5px 10px;
-  /* transition: all 0.1s ease;  */
-  width: 150px;
+  padding: 5px 5px;
+  width: 200px;
+
+  /* 애니메이션을 위한 배경 설정: 왼쪽에서 오른쪽으로 차오를 검은 선 */
+  background-image: linear-gradient(black, black);
+  background-size: 0% 2px; /* 처음에는 선의 너비가 0% */
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  transition: background-size 0.3s ease; /* 0.3초 동안 부드럽게 */
 }
+ 
 
 @keyframes underline-draw {
   from {
     width: 0;
   }
   to {
-    width: 100%;
+    width: 200px;
   }
 }
 .serch-area input:focus {
   border: none;
   outline: none;
-  border-bottom: 1px solid #000;
-  border-color: black;
-  animation: underline-draw 0.2s ease-out;
+  background-size: 100% 2px;
 }
 
 .product-card img {
@@ -66,6 +95,6 @@
   transition: all 0.1s ease;
 }
 /* 호버되면? -> 1.1배확대 */
-.product-card img:hover{
-  transform: scale(1.1);
+.product-card img:hover {
+  transform: scale(1.05);
 }
