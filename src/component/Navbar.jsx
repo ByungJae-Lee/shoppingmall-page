@@ -7,16 +7,19 @@ import {
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router';
-import { NavbarOffcanvas } from 'react-bootstrap';
 
-const Navbar = () => {
+const Navbar = ({ authenticate, setAuthenticate }) => {
   const navigate = useNavigate();
 
   // 🔴 추가: 메뉴의 열림/닫힘 상태를 관리하는 변수
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const goToLoginPage = () => {
-    navigate('/login');
+    if (authenticate === true) {
+      setAuthenticate(false);
+    } else {
+      navigate('/login');
+    }
   };
 
   const goToHomepage = () => {
@@ -33,7 +36,7 @@ const Navbar = () => {
     'Sale',
     '지속가능성',
   ];
-// 검색기능 함수
+  // 검색기능 함수
   const search = (event) => {
     // 엔터키 인식
     if (event.key === 'Enter') {
@@ -57,7 +60,9 @@ const Navbar = () => {
 
         <div className="login-button">
           <FontAwesomeIcon icon={faUser} />
-          <div onClick={goToLoginPage}>로그인</div>
+          <div onClick={goToLoginPage}>
+            {authenticate === true ? '로그아웃' : '로그인'}
+          </div>
         </div>
       </div>
 
