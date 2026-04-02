@@ -13,8 +13,8 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
 
   // 🔴 추가: 메뉴의 열림/닫힘 상태를 관리하는 변수
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const goToLoginPage = () => {
+// 로그인/로그아웃 상태관리 버튼
+  const handleLogin = () => {
     if (authenticate === true) {
       setAuthenticate(false);
     } else {
@@ -60,7 +60,7 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
 
         <div className="login-button">
           <FontAwesomeIcon icon={faUser} />
-          <div onClick={goToLoginPage}>
+          <div onClick={handleLogin}>
             {authenticate === true ? '로그아웃' : '로그인'}
           </div>
         </div>
